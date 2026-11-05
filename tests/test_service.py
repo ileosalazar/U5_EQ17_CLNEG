@@ -22,13 +22,13 @@ def test_payment_rejected_vip():
         service.checkout(pedido_vip)        
     gateway.charge.assert_called_once_with(170)
 
-#def test_gateway_approved():
+def test_gateway_approved():
     gateway = Mock()
     gateway.charge.return_value = True
     assert OrderService(gateway).checkout(Order(100)) == 100
     gateway.charge.assert_called_once_with(100)
 
-#def test_gateway_rejected():
+def test_gateway_rejected():
     gateway = Mock()
     gateway.charge.return_value = False
     with pytest.raises(RuntimeError):
